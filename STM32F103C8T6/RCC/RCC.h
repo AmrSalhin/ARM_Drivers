@@ -6,6 +6,7 @@
 /**********************************************/
 #include <stdint.h>
 #include "..\stm32f103c8t6.h"
+#include "..\BIT_MATH.h"
 
 /**********************************************/
 /**************  Data Types   *****************/
@@ -48,19 +49,7 @@ typedef enum
 {
     PLL_HSE_DIV_BY1,
     PLL_HSE_DIV_BY2
-}PLL_PRE;
-
-// typedef enum
-// {
-//     PLL_HSE_DIV_BY1,
-//     PLL_HSE_DIV_BY2
-// }APB_PRE;
-
-// typedef enum
-// {
-//     PLL_HSE_DIV_BY1,
-//     PLL_HSE_DIV_BY2
-// }AHB_PRE;
+}HSE_DIV;
 
 typedef enum{
     OFF,
@@ -71,9 +60,10 @@ typedef enum{
     DMA1,
     DMA2,
     SRAM,
-    FLITF,
-    FSMC,
-    SDIO
+    FLITF = 4,
+    CRC = 6,
+    FSMC = 8,
+    SDIO = 10,
 }AHB_PERIPHERAL;
 
 typedef enum{
@@ -86,25 +76,25 @@ typedef enum{
     TIM12,
     TIM13,
     TIM14,
-    WWDG,
-    SPI2,
+    WWDG = 11,
+    SPI2 = 14,
     SPI3,
-    USART2,
+    USART2 = 17,
     USART3,
     USART4,
     USART5,
     I2C1,
     I2C2,
     USB,
-    CAN,
-    BKP,
+    CAN = 25,
+    BKP = 27,
     PWR,
     DAC
 }APB1_PERIPHERAL;
 
 typedef enum{
-    AFIO,
-    IOPA,
+    AFIO = 0,
+    IOPA = 2,
     IOPB,
     IOPC,
     IOPD,
@@ -118,7 +108,7 @@ typedef enum{
     TIM8,
     USART1,
     ADC3,
-    TIM9,
+    TIM9 = 19,
     TIM10,
     TIM11
 }APB2_PERIPHERAL;
@@ -145,19 +135,19 @@ STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status);
 STATUS RCC_Set_SysClk(CLK_Type clk_type);
 
 /*Set HSE congigurations*/
-STATUS RCC_HSE_config();
+STATUS RCC_HSE_division(HSE_DIV div);
 
 /*Set PLL congigurations
 1- choose multiplication factor (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
 2- choose src clk(HSI,HSE)*/
-STATUS RCC_Pll_config(PLL_MUL mul, CLK_Type clk);
+STATUS RCC_Pll_config(CLK_Type clk, PLL_MUL mul);
 
 /*
-DMA1,DMA2,SRAM,FLITF,FSMC,SDIO
+DMA1,DMA2,SRAM,FLITF,CRC,FSMC,SDIO
 */
 STATUS RCC_AHB_peripheralEnable(AHB_PERIPHERAL peripheral);
 /*
-DMA1,DMA2,SRAM,FLITF,FSMC,SDIO
+DMA1,DMA2,SRAM,FLITF,CRC,FSMC,SDIO
 */
 STATUS RCC_AHB_peripheralDisable(AHB_PERIPHERAL peripheral);
 /*
