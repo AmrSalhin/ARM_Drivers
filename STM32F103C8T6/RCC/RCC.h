@@ -13,18 +13,12 @@
 /**********************************************/
  
 
+
 typedef enum{
    HSI,
    HSE,
    PLL
 }CLK_Type;
-
-// typedef struct
-// {
-//    PLL_PRE pllPre;
-//    APB_PRE apbPre;
-//    AHB_PRE ahbpre;
-// }HSE_config;
 
 typedef enum{
    PLL_MUL_BY2,
@@ -41,7 +35,6 @@ typedef enum{
    PLL_MUL_BY13,
    PLL_MUL_BY14,
    PLL_MUL_BY15,
-   PLL_MUL_BY16,
    PLL_MUL_BY16
 }PLL_MUL;
 
@@ -115,7 +108,6 @@ typedef enum{
 
 
  
-RCC_t* RCC =  (RCC_t*) RCC_BASE_ADDRESS;
 
 
 /**********************************************/
@@ -128,18 +120,18 @@ RCC_t* RCC =  (RCC_t*) RCC_BASE_ADDRESS;
 /**************  Functions    *****************/
 /**********************************************/
 
-/*turn clk on and off*/
+/*turn CLK on and off*/
 STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status);
 
-/*Choose System Clk*/
+/*Choose System CLK*/
 STATUS RCC_Set_SysClk(CLK_Type clk_type);
 
-/*Set HSE congigurations*/
+/*Set HSE configurations*/
 STATUS RCC_HSE_division(HSE_DIV div);
 
-/*Set PLL congigurations
+/*Set PLL configurations
 1- choose multiplication factor (2,3,4,5,6,7,8,9,10,11,12,13,14,15,16)
-2- choose src clk(HSI,HSE)*/
+2- choose SRC CLK(HSI,HSE)*/
 STATUS RCC_Pll_config(CLK_Type clk, PLL_MUL mul);
 
 /*

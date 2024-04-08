@@ -1,5 +1,8 @@
 #include "RCC.h"
 
+RCC_t* RCC =  (RCC_t*) RCC_BASE_ADDRESS;
+
+
 STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status)
 {
     uint32_t timeoutCounter = 0;
@@ -37,7 +40,7 @@ STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status)
     else
     {
         return NOK;
-    }   
+    }
 }
 
 STATUS RCC_Set_SysClk(CLK_Type clk_type)
@@ -78,7 +81,7 @@ STATUS RCC_Set_SysClk(CLK_Type clk_type)
          return NOK;
         break;
     }
-    
+
     return OK;
 }
 
@@ -89,7 +92,7 @@ STATUS RCC_HSE_division(HSE_DIV div)
 }
 
 STATUS RCC_Pll_config(CLK_Type clk, PLL_MUL mul)
-{   
+{
     RCC->RCC_CFGR.bit.PLLSRC = clk;
     RCC->RCC_CFGR.bit.PLLMUL = mul;
 

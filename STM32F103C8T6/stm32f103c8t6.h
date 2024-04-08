@@ -56,7 +56,6 @@ typedef union
         uint32_t reserved_2 :4;
         uint32_t PLLON      :1;
         uint32_t PLLRDY     :1;
-        uint32_t reserved_3 :6;
     }bit;
     
  }RCC_CR_t;
@@ -78,7 +77,6 @@ typedef union
         uint32_t USBPRE     :1;
         uint32_t reserved_1 :1;
         uint32_t MCO        :3;
-        uint32_t reserved_2 :5;
     }bit;
  }RCC_CFGR_t;
   typedef union 
@@ -107,7 +105,6 @@ typedef union
         uint32_t PLLRDYC    :1;
         uint32_t reserve_3  :2;
         uint32_t CSSC       :1;
-        uint32_t reserved_4 :8;
     }bit;
  }RCC_CIR_t;
   typedef union 
@@ -136,7 +133,6 @@ typedef union
         uint32_t TIM9RST    :1;
         uint32_t TIM10RST   :1;
         uint32_t TIM11RST   :1;
-        uint32_t reserved_3 :10;
     }bit;
  }RCC_APB2RSTR_t;
   typedef union
@@ -173,7 +169,6 @@ typedef union
         uint32_t BKPRST     :1;
         uint32_t PWRRST     :1;
         uint32_t DACRST     :1;
-        uint32_t reserved_6 :2;
     }bit;
  }RCC_APB1RSTR_t;
   typedef union 
@@ -193,7 +188,6 @@ typedef union
         uint32_t FSMCEN     :1;
         uint32_t reserved_4 :1;
         uint32_t SDIOEN     :1;
-        uint32_t reserved_5 :21;
     }bit;
  }RCC_AHBENR_t;
   typedef union 
@@ -222,7 +216,6 @@ typedef union
         uint32_t TIM9EN     :1;
         uint32_t TIM10EN    :1;
         uint32_t TIM11EN    :1;
-        uint32_t reserved_3 :10;
     }bit;
  }RCC_APB2ENR_t;
   typedef union 
@@ -259,7 +252,6 @@ typedef union
         uint32_t BKPEN      :1;
         uint32_t PWREN      :1;
         uint32_t DACEN      :1;
-        uint32_t reserved_6 :2;
     }bit;
  }RCC_APB1ENR_t;
   typedef union 
@@ -276,7 +268,6 @@ typedef union
         uint32_t reserved_2 :5;
         uint32_t RTCEN      :1;
         uint32_t BDRST      :1;
-        uint32_t reserved_3 :15;
     }bit;
  }RCC_BDCR_t;
   typedef union
