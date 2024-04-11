@@ -274,7 +274,7 @@ typedef union
  {
    uint32_t    reg;
     
-    struct BDCR_REG_BIT
+    struct CSR_REG_BIT
     {
         uint32_t LSION      :1;
         uint32_t LSIRDY     :1;
