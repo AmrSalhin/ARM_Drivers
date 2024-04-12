@@ -1,5 +1,5 @@
-#ifndef STM32F103C8T6_H_
-#define STM32F103C8T6_H_
+#ifndef STM32F401RCT6_H_
+#define STM32F401RCT6_H_
 
 
 /**********************************************************/
@@ -7,11 +7,13 @@
 /***************    DATA TYPE       ***********************/
 /**********************************************************/
 /**********************************************************/
+#include "stdint.h"
 
 #define TIME_OUT        500
 
 typedef enum{
    NOK,
+   TIMEOUT,
    OK
 }STATUS;
 
@@ -94,7 +96,7 @@ typedef union
         uint32_t MCO1       :2;
         uint32_t I2SSRC     :1;
         uint32_t MCO1PRE    :3;
-        uint32_t MCO1PRE    :3;
+        uint32_t MCO2PRE    :3;
         uint32_t MCO2       :2;
 
     }bit;
@@ -181,11 +183,11 @@ typedef union
         uint32_t SPI3RST    :1;
         uint32_t reserved_3 :1;
         uint32_t USART2RST  :1;
-        uint32_t reserved_2 :3;
+        uint32_t reserved_4 :3;
         uint32_t I2C1RST    :1;
         uint32_t I2C2RST    :1;
-        uint32_t I2C2RST    :1;
-        uint32_t reserved_4 :4;
+        uint32_t I2C3RST    :1;
+        uint32_t reserved_5 :4;
         uint32_t PWRRST     :1;
     }bit;
  }RCC_APB1RSTR_t;
@@ -263,11 +265,11 @@ typedef union
         uint32_t SPI3EN    :1;
         uint32_t reserved_3 :1;
         uint32_t USART2EN  :1;
-        uint32_t reserved_2 :3;
+        uint32_t reserved_4 :3;
         uint32_t I2C1EN    :1;
         uint32_t I2C2EN    :1;
-        uint32_t I2C2EN    :1;
-        uint32_t reserved_4 :4;
+        uint32_t I2C3EN    :1;
+        uint32_t reserved_5 :4;
         uint32_t PWREN     :1;
     }bit;
  }RCC_APB1ENR_t;
@@ -345,11 +347,11 @@ typedef union
         uint32_t SPI3LEN    :1;
         uint32_t reserved_3 :1;
         uint32_t USART2LEN  :1;
-        uint32_t reserved_2 :3;
+        uint32_t reserved_4 :3;
         uint32_t I2C1LEN    :1;
         uint32_t I2C2LEN    :1;
-        uint32_t I2C2LEN    :1;
-        uint32_t reserved_4 :4;
+        uint32_t I2C3LEN    :1;
+        uint32_t reserved_5 :4;
         uint32_t PWRLEN     :1;
     }bit;
  }RCC_APB1LENR_t;
