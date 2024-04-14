@@ -1,17 +1,67 @@
 #ifndef STM32F103C8T6_H_
 #define STM32F103C8T6_H_
 
+#include "stdint.h"
 
-/**********************************************************/
-/**********************************************************/
-/***************    DATA TYPE       ***********************/
-/**********************************************************/
-/**********************************************************/
+/*************************         Memories Base Addresses         **************************/
+
+#define FLASH_BASE_ADDRESS          0x08000000UL
+
+#define SRAM_BASE_ADDRESS           0x20000000UL
+
+
+/*************************      AHB1 peripheral Base Addresses      **************************/
+
+
+#define DMA1_BASE_ADDRESS           0x40020000UL
+#define RCC_BASE_ADDRESS            0x40021000UL
+#define FLASH_INTERFCE_BASE_ADDRESS 0x400220000UL
+#define CRC_BASE_ADDRESS            0x40023000UL
+
+
+
+/*************************      APB1 peripheral Base Addresses      **************************/
+
+#define PWR_BASE_ADDRESS            0x40007000UL
+#define BKP_BASE_ADDRESS            0x40006c00UL
+#define CAN1_BASE_ADDRESS           0x40016400UL
+#define USB_FS_BASE_ADDRESS         0x50005c00UL
+#define I2C2_BASE_ADDRESS           0x40005800UL
+#define I2C1_BASE_ADDRESS           0x40005400UL
+#define USART3_BASE_ADDRESS         0x40004800UL
+#define USART2_BASE_ADDRESS         0x40004400UL
+#define SPI2_BASE_ADDRESS           0x40003800UL
+#define IWDG_BASE_ADDRESS           0x40003000UL
+#define WWDG_BASE_ADDRESS           0x40002C00UL
+#define RTC_BKP_BASE_ADDRESS        0x40002800UL
+#define TIM4_BASE_ADDRESS           0x40000800UL
+#define TIM3_BASE_ADDRESS           0x40000400UL
+#define TIM2_BASE_ADDRESS           0x40000000UL
+
+/*************************      APB2 peripheral Base Addresses      **************************/
+
+#define USART1_BASE_ADDRESS         0x40013800UL
+#define SPI1_BASE_ADDRESS           0x40013000UL
+#define TIM1_BASE_ADDRESS           0x40012C00UL
+#define ADC2_BASE_ADDRESS           0x40012800UL
+#define ADC1_BASE_ADDRESS           0x40012400UL
+#define GPIOE_BASE_ADDRESS          0x40011800UL
+#define GPIOD_BASE_ADDRESS          0x40011400UL
+#define GPIOC_BASE_ADDRESS          0x40011000UL
+#define GPIOB_BASE_ADDRESS          0x40010C00UL
+#define GPIOA_BASE_ADDRESS          0x40010800UL
+#define EXTI_BASE_ADDRESS           0x40010400UL
+#define AFIO_BASE_ADDRESS           0x40010000UL
+
+
+/******************************    DATA TYPE       *******************************/
+
 
 #define TIME_OUT        500
 
 typedef enum{
    NOK,
+   TIMEOUT,
    OK
 }STATUS;
 
@@ -27,16 +77,9 @@ typedef enum{
 
 
 
-/**********************************************************/
-/**********************************************************/
-/***************      REGISTERS        ********************/
-/**********************************************************/
-/**********************************************************/
 
-/*
-RCC registers
-*/
-#define RCC_BASE_ADDRESS            0x40021000
+
+/*************************      RCC Registers Bits Definition UNION      **************************/
 
 typedef union 
  {
@@ -290,7 +333,8 @@ typedef union
     }bit;
  }RCC_CSR_t;
  
- 
+ /*************************      RCC Registers Definition Strucre      **************************/
+
  typedef struct 
  {
     volatile RCC_CR_t RCC_CR;
@@ -305,5 +349,9 @@ typedef union
     volatile RCC_CSR_t RCC_CSR;
 
  }RCC_t;
+
+/*************************      RCC peripheral Definition       **************************/
+
+#define RCC         ((RCC_t *) RCC_BASE_ADDRESS)
 
 #endif

@@ -1,13 +1,73 @@
 #ifndef STM32F401RCT6_H_
 #define STM32F401RCT6_H_
 
-
-/**********************************************************/
-/**********************************************************/
-/***************    DATA TYPE       ***********************/
-/**********************************************************/
-/**********************************************************/
 #include "stdint.h"
+
+
+
+/*************************         Memories Base Addresses         **************************/
+
+#define FLASH_BASE_ADDRESS          0x08000000UL
+
+#define SRAM_BASE_ADDRESS           0x20000000UL
+
+
+/*************************      AHB1 peripheral Base Addresses      **************************/
+
+
+#define DMA2_BASE_ADDRESS           0x40026400UL
+#define DMA1_BASE_ADDRESS           0x40026000UL
+#define FLASH_INTERFCE_BASE_ADDRESS 0x40023C00UL
+#define RCC_BASE_ADDRESS            0x40023800UL
+#define CRC_BASE_ADDRESS            0x40023000UL
+#define GPIOH_BASE_ADDRESS          0x40021C00UL
+#define GPIOE_BASE_ADDRESS          0x40021000UL
+#define GPIOD_BASE_ADDRESS          0x40020C00UL
+#define GPIOC_BASE_ADDRESS          0x40020800UL
+#define GPIOB_BASE_ADDRESS          0x40020400UL
+#define GPIOA_BASE_ADDRESS          0x40020000UL
+
+/*************************      AHB2 peripheral Base Addresses      **************************/
+
+#define USB_OTG_FS_BASE_ADDRESS     0x50000000UL
+
+/*************************      APB1 peripheral Base Addresses      **************************/
+
+#define PWR_BASE_ADDRESS            0x40007000UL
+#define I2C3_BASE_ADDRESS           0x40005C00UL
+#define I2C2_BASE_ADDRESS           0x40005800UL
+#define I2C1_BASE_ADDRESS           0x40005400UL
+#define USART2_BASE_ADDRESS         0x40004400UL
+#define I2C3EXT_BASE_ADDRESS        0x40004000UL
+#define SPI3_I2C3_BASE_ADDRESS      0x40003C00UL
+#define SPI2_I2C2_BASE_ADDRESS      0x40003800UL
+#define I2C2EXT_BASE_ADDRESS        0x40003400UL
+#define IWDG_BASE_ADDRESS           0x40003000UL
+#define WWDG_BASE_ADDRESS           0x40002C00UL
+#define RTC_BKP_BASE_ADDRESS        0x40002800UL
+#define TIM5_BASE_ADDRESS           0x40000C00UL
+#define TIM4_BASE_ADDRESS           0x40000800UL
+#define TIM3_BASE_ADDRESS           0x40000400UL
+#define TIM2_BASE_ADDRESS           0x40000000UL
+
+/*************************      APB2 peripheral Base Addresses      **************************/
+
+#define TIM11_BASE_ADDRESS          0x40014800UL
+#define TIM10_BASE_ADDRESS          0x40014400UL
+#define TIM9_BASE_ADDRESS           0x40014000UL
+#define EXTI_BASE_ADDRESS           0x40013C00UL
+#define SYSCFG_BASE_ADDRESS         0x40013800UL
+#define SPI4_I2C4_BASE_ADDRESS      0x40013400UL
+#define SPI1_BASE_ADDRESS           0x40013000UL
+#define SDIO_BASE_ADDRESS           0x40012C00UL
+#define ADC1_BASE_ADDRESS           0x40012000UL
+#define USART6_BASE_ADDRESS         0x40011400UL
+#define USART1_BASE_ADDRESS         0x40011000UL
+#define TIM8_BASE_ADDRESS           0x40010400UL
+#define TIM1_BASE_ADDRESS           0x40010000UL
+
+/******************************    DATA TYPE       *******************************/
+
 
 #define TIME_OUT        500
 
@@ -29,16 +89,7 @@ typedef enum{
 
 
 
-/**********************************************************/
-/**********************************************************/
-/***************      REGISTERS        ********************/
-/**********************************************************/
-/**********************************************************/
-
-/*
-RCC registers
-*/
-#define RCC_BASE_ADDRESS            0x40023800
+/*************************      RCC Registers Bits Definition UNION      **************************/
 
 typedef union 
  {
@@ -455,7 +506,8 @@ typedef union
     }bit;
  }RCC_DCKCFGR_t;
  
- 
+ /*************************      RCC Registers Definition Strucre      **************************/
+
  typedef struct 
  {
     volatile RCC_CR_t RCC_CR;
@@ -464,30 +516,61 @@ typedef union
     volatile RCC_CIR_t RCC_CIR;
     volatile RCC_AHB1RSTR_t RCC_AHB1RSTR;
     volatile RCC_AHB2RSTR_t RCC_AHB2RSTR;
-    volatile uint64_t reserved_1;
+    volatile uint32_t reserved_1[2];
     volatile RCC_APB1RSTR_t RCC_APB1RSTR;
     volatile RCC_APB2RSTR_t RCC_APB2RSTR;
-    volatile uint64_t reserved_2;
+    volatile uint32_t reserved_2[2];
     volatile RCC_AHB1ENR_t RCC_AHB1ENR;
     volatile RCC_AHB2ENR_t RCC_AHB2ENR;
-    volatile uint64_t reserved_3;
+    volatile uint32_t reserved_3[2];
     volatile RCC_APB1ENR_t RCC_APB1ENR;
     volatile RCC_APB2ENR_t RCC_APB2ENR;
-    volatile uint64_t reserved_4;
+    volatile uint32_t reserved_4[2];
     volatile RCC_AHB1LENR_t RCC_AHB1LENR;
     volatile RCC_AHB2LENR_t RCC_AHB2LENR;
-    volatile uint64_t reserved_5;
+    volatile uint32_t reserved_5[2];
     volatile RCC_APB1LENR_t RCC_APB1LENR;
     volatile RCC_APB2LENR_t RCC_APB2LENR;
-    volatile uint64_t reserved_6;
+    volatile uint32_t reserved_6[2];
     volatile RCC_BDCR_t RCC_BDCR;
     volatile RCC_CSR_t RCC_CSR;
-    volatile uint64_t reserved_7;
+    volatile uint32_t reserved_7[2];
     volatile RCC_SSCGR_t RCC_SSCGR;
     volatile RCC_PLLI2S_CFGR_t RCC_PLLI2S_CFGR;
     volatile uint32_t reserved_8;
     volatile RCC_DCKCFGR_t RCC_DCKCFGR;
 
  }RCC_t;
+
+/*************************      RCC peripheral Definition       **************************/
+
+#define RCC         ((RCC_t *) RCC_BASE_ADDRESS)
+
+
+
+/*************************       GPIO Registers Definition Strucre        **************************/
+
+typedef struct 
+{
+  volatile  uint32_t  MODER;
+  volatile  uint32_t  OTYPER;
+  volatile  uint32_t  OSPEEDR;
+  volatile  uint32_t  PUPDR;
+  volatile  uint32_t  IDR;
+  volatile  uint32_t  ODR;
+  volatile  uint32_t  BSRR;
+  volatile  uint32_t  LCKR;
+  volatile  uint64_t  AFR;
+
+}GPIO_REG_t;
+
+/*************************           GPIO peripheral Definition           **************************/
+
+#define GPIOA    ((GPIO_REG_t *)GPIOA_BASE_ADDRESS)
+#define GPIOB    ((GPIO_REG_t *)GPIOB_BASE_ADDRESS)
+#define GPIOC    ((GPIO_REG_t *)GPIOC_BASE_ADDRESS)
+#define GPIOD    ((GPIO_REG_t *)GPIOD_BASE_ADDRESS)
+#define GPIOE    ((GPIO_REG_t *)GPIOE_BASE_ADDRESS)
+#define GPIOH    ((GPIO_REG_t *)GPIOH_BASE_ADDRESS)
 
 #endif

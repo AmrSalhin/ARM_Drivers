@@ -5,8 +5,9 @@
 /**************   Includes    *****************/
 /**********************************************/
 #include <stdint.h>
-#include "..\stm32f401rct6.h"
-#include "..\BIT_MATH.h"
+#include "..\..\..\Library\stm32f401rct6.h"
+#include "..\..\..\Library\BIT_MATH.h"
+#include "RCC_private.h"
 
 /**********************************************/
 /**************  Data Types   *****************/
@@ -139,7 +140,7 @@ frequency is between 192 and 432 MHz
 3- choose division P factor  2,4,6,8
 The software has to set these bits correctly not to exceed 84 MHz
 */
-STATUS RCC_Pll_config(PLL_CFGR pll_cfgr);
+STATUS RCC_Pll_config(const PLL_CFGR* pll_cfgr);
 
 /*
 GPIOA,GPIOB,GPIOC,GPIOD,GPIOE,GPIOH,CRC,DMA1,DMA2

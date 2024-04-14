@@ -1,6 +1,5 @@
-#include "RCC.h"
+#include "..\Inc\RCC.h"
 
-RCC_t* RCC =  (RCC_t*) RCC_BASE_ADDRESS;
 
 
 STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status)

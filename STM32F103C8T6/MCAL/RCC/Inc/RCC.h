@@ -5,8 +5,9 @@
 /**************   Includes    *****************/
 /**********************************************/
 #include <stdint.h>
-#include "..\stm32f103c8t6.h"
-#include "..\BIT_MATH.h"
+#include "..\..\..\Library\stm32f103c8t6.h"
+#include "..\..\..\Library\BIT_MATH.h"
+#include "RCC_private.h"
 
 /**********************************************/
 /**************  Data Types   *****************/

@@ -1,6 +1,5 @@
-#include "RCC.h"
+#include "..\Inc\RCC.h"
 
-RCC_t* RCC =  (RCC_t*) RCC_BASE_ADDRESS;
 
 
 STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status)
@@ -94,15 +93,15 @@ STATUS RCC_HSE_HSI_division(uint8_t div)
 /*
 ERROR TO BE SOLVED
 */
-STATUS RCC_Pll_config(PLL_CFGR pll_cfgr)
+STATUS RCC_Pll_config(const PLL_CFGR* pll_cfgr)
 {
-    RCC->RCC_PLL_CFGR.bit.PLLSRC = pll_cfgr.clk;
+    RCC->RCC_PLL_CFGR.bit.PLLSRC = pll_cfgr->clk;
     /*division factor for SYSCLK 
     The software has to set these bits correctly not to exceed 84 MHz*/
-    RCC->RCC_PLL_CFGR.bit.PLLP = pll_cfgr.pllP;
+    RCC->RCC_PLL_CFGR.bit.PLLP = pll_cfgr->pllP;
     /*The software has to set these bits correctly to ensure that the VCO output 
     frequency is between 192 and 432 MHz*/
-    RCC->RCC_PLL_CFGR.bit.PLLN = pll_cfgr.pllN;
+    RCC->RCC_PLL_CFGR.bit.PLLN = pll_cfgr->pllN;
 
     return OK;
 }
