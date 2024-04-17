@@ -129,26 +129,32 @@ STATUS  GPIO_SetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t value)
     switch (port)
 {
 case PORTA:
+    Clr_bit(GPIOA->ODR,pin);
     GPIOA->ODR |= (value<<pin);
     break;
 
 case PORTB:
+    Clr_bit(GPIOB->ODR,pin);
     GPIOB->ODR |= (value<<pin);
     break;
     
 case PORTC:
+    Clr_bit(GPIOC->ODR,pin);
     GPIOC->ODR |= (value<<pin);
     break;
 
 case PORTD:
+    Clr_bit(GPIOD->ODR,pin);
     GPIOD->ODR |= (value<<pin);
     break;
 
 case PORTE:
+    Clr_bit(GPIOE->ODR,pin);
     GPIOE->ODR |= (value<<pin);
     break;
 
 case PORTH:
+    Clr_bit(GPIOH->ODR,pin);
     GPIOH->ODR |= (value<<pin);
     break;
 
