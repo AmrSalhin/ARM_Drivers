@@ -3,7 +3,6 @@
 
 #include "..\..\..\Library\stm32f401rct6.h"
 #include "..\..\..\Library\BIT_MATH.h"
-#include "GPIO_private.h"
 
 
 /*******************************        DATA TYPES         ******************************/
@@ -74,6 +73,6 @@ typedef struct
 STATUS  GPIO_PinInit(const GPIO_CFG_t* gpioCfg);
 STATUS  GPIO_SetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t value);
 STATUS  GPIO_TogglePinValue(PORT_t port,PIN_t pin);
-STATUS  GPIO_SetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t* value);
+STATUS  GPIO_GetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t* value);
 
 #endif

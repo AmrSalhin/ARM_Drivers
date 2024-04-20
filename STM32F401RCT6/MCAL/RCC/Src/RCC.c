@@ -1,5 +1,10 @@
 #include "..\Inc\RCC.h"
 
+/*************************      RCC peripheral Definition       **************************/
+
+#define RCC         ((RCC_t *) RCC_BASE_ADDRESS)
+
+/*************************      RCC Functions implementation       **************************/
 
 
 STATUS RCC_SetClk_Status(CLK_Type clk_type, CLK_STATUS clk_status)
@@ -90,9 +95,7 @@ STATUS RCC_HSE_HSI_division(uint8_t div)
     return OK;
 }
 
-/*
-ERROR TO BE SOLVED
-*/
+
 STATUS RCC_Pll_config(const PLL_CFGR* pll_cfgr)
 {
     RCC->RCC_PLL_CFGR.bit.PLLSRC = pll_cfgr->clk;

@@ -1,6 +1,16 @@
 #include "..\Inc\GPIO.h"
 
 
+/*************************           GPIO peripheral Definition           **************************/
+
+#define GPIOA    ((GPIO_REG_t *)GPIOA_BASE_ADDRESS)
+#define GPIOB    ((GPIO_REG_t *)GPIOB_BASE_ADDRESS)
+#define GPIOC    ((GPIO_REG_t *)GPIOC_BASE_ADDRESS)
+#define GPIOD    ((GPIO_REG_t *)GPIOD_BASE_ADDRESS)
+#define GPIOE    ((GPIO_REG_t *)GPIOE_BASE_ADDRESS)
+#define GPIOH    ((GPIO_REG_t *)GPIOH_BASE_ADDRESS)
+
+/*************************      GPIO Functions implementation       **************************/
 
 STATUS  GPIO_PinInit(const GPIO_CFG_t* gpioCfg)
 {
@@ -206,27 +216,27 @@ STATUS  GPIO_GetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t* value)
 switch (port)
 {
 case PORTA:
-    *value = Get_bit(GPIOA->ODR,pin);
+    *value = Get_bit(GPIOA->IDR,pin);
     break;
 
 case PORTB:
-    *value = Get_bit(GPIOB->ODR,pin);
+    *value = Get_bit(GPIOB->IDR,pin);
     break;
     
 case PORTC:
-    *value = Get_bit(GPIOC->ODR,pin);
+    *value = Get_bit(GPIOC->IDR,pin);
     break;
 
 case PORTD:
-    *value = Get_bit(GPIOD->ODR,pin);
+    *value = Get_bit(GPIOD->IDR,pin);
     break;
 
 case PORTE:
-    *value = Get_bit(GPIOE->ODR,pin);
+    *value = Get_bit(GPIOE->IDR,pin);
     break;
 
 case PORTH:
-    *value = Get_bit(GPIOH->ODR,pin);
+    *value = Get_bit(GPIOH->IDR,pin);
     break;
 
 default:

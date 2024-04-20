@@ -542,9 +542,7 @@ typedef union
 
  }RCC_t;
 
-/*************************      RCC peripheral Definition       **************************/
 
-#define RCC         ((RCC_t *) RCC_BASE_ADDRESS)
 
 
 
@@ -564,13 +562,6 @@ typedef struct
 
 }GPIO_REG_t;
 
-/*************************           GPIO peripheral Definition           **************************/
 
-#define GPIOA    ((GPIO_REG_t *)GPIOA_BASE_ADDRESS)
-#define GPIOB    ((GPIO_REG_t *)GPIOB_BASE_ADDRESS)
-#define GPIOC    ((GPIO_REG_t *)GPIOC_BASE_ADDRESS)
-#define GPIOD    ((GPIO_REG_t *)GPIOD_BASE_ADDRESS)
-#define GPIOE    ((GPIO_REG_t *)GPIOE_BASE_ADDRESS)
-#define GPIOH    ((GPIO_REG_t *)GPIOH_BASE_ADDRESS)
 
 #endif

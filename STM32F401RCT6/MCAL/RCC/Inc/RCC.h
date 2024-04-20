@@ -7,7 +7,6 @@
 #include <stdint.h>
 #include "..\..\..\Library\stm32f401rct6.h"
 #include "..\..\..\Library\BIT_MATH.h"
-#include "RCC_private.h"
 
 /**********************************************/
 /**************  Data Types   *****************/
