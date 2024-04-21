@@ -70,10 +70,6 @@ typedef enum{
     READY
 }FLAG;
 
-typedef enum{
-    DISABLE,
-    ENABLE
-}PERIFERAL_STATUS;
 
 
 

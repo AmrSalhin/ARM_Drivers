@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "stm32f103c8t6.h": "c"
+        "stm32f103c8t6.h": "c",
+        "rcc.h": "c"
     }
 }

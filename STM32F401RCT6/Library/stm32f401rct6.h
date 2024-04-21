@@ -66,27 +66,6 @@
 #define TIM8_BASE_ADDRESS           0x40010400UL
 #define TIM1_BASE_ADDRESS           0x40010000UL
 
-/******************************    DATA TYPE       *******************************/
-
-
-#define TIME_OUT        500
-
-typedef enum{
-   NOK,
-   TIMEOUT,
-   OK
-}STATUS;
-
-typedef enum{
-    NOT_READY,
-    READY
-}FLAG;
-
-typedef enum{
-    DISABLE,
-    ENABLE
-}PERIFERAL_STATUS;
-
 
 
 /*************************      RCC Registers Bits Definition UNION      **************************/
@@ -558,7 +537,7 @@ typedef struct
   volatile  uint32_t  ODR;
   volatile  uint32_t  BSRR;
   volatile  uint32_t  LCKR;
-  volatile  uint64_t  AFR;
+  volatile  uint32_t  AFR[2];
 
 }GPIO_REG_t;
 

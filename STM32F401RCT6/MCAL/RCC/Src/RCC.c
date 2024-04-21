@@ -1,5 +1,5 @@
 #include "..\Inc\RCC.h"
-
+#include "..\Inc\RCC_private.h"
 /*************************      RCC peripheral Definition       **************************/
 
 #define RCC         ((RCC_t *) RCC_BASE_ADDRESS)

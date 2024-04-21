@@ -6,13 +6,16 @@
 /**********************************************/
 #include <stdint.h>
 #include "..\..\..\Library\stm32f103c8t6.h"
+#include "..\..\..\Library\ErrorStates.h"
 #include "..\..\..\Library\BIT_MATH.h"
-#include "RCC_private.h"
 
 /**********************************************/
 /**************  Data Types   *****************/
 /**********************************************/
- 
+ typedef enum{
+    NOT_READY,
+    READY
+}FLAG;
 
 
 typedef enum{
