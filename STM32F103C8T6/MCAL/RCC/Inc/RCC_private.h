@@ -3,4 +3,9 @@
 
 #define TIME_OUT        500
 
+typedef enum{
+    NOT_READY,
+    READY
+}FLAG;
+
 #endif

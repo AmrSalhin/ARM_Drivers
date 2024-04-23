@@ -54,26 +54,6 @@
 #define AFIO_BASE_ADDRESS           0x40010000UL
 
 
-/******************************    DATA TYPE       *******************************/
-
-
-#define TIME_OUT        500
-
-typedef enum{
-   NOK,
-   TIMEOUT,
-   OK
-}STATUS;
-
-typedef enum{
-    NOT_READY,
-    READY
-}FLAG;
-
-
-
-
-
 
 /*************************      RCC Registers Bits Definition UNION      **************************/
 
@@ -349,5 +329,21 @@ typedef union
 /*************************      RCC peripheral Definition       **************************/
 
 #define RCC         ((RCC_t *) RCC_BASE_ADDRESS)
+
+
+ /*************************      GPIO Register Definition Strucre      **************************/
+
+ typedef struct 
+ {
+    volatile uint32_t CR[2];
+    volatile uint32_t IDR;
+    volatile uint32_t ODR;
+    volatile uint32_t BSRR;
+    volatile uint32_t BRR;
+    volatile uint32_t LCKR;
+
+ }GPIO_REG_t;
+
+
 
 #endif
