@@ -15,9 +15,10 @@ STATUS LED_init(LED_t* led)
     PIN_CFG_t pinCfg;
     
     pinCfg.port = led->port;
-    pinCfg.port = led->pin;
-    pinCfg.mode = 1; /*OUTPUT*/
-    pinCfg.outputType = 1;/*PUSHPULL*/
+    pinCfg.pin = led->pin;
+    pinCfg.mode = OUTPUT; /*OUTPUT*/
+    pinCfg.outputType = PUSH_PULL;/*PUSHPULL*/
+    pinCfg.speed = LOW_SPEED;
     GPIO_PinInit(&pinCfg);
     switch (led->activeType)
     {
@@ -27,7 +28,7 @@ STATUS LED_init(LED_t* led)
         {
             GPIO_SetPinValue(led->port,led->pin,HIGH);
         }
-        else if(led->ledState == LED_ON)
+        else if(led->ledState == LED_OFF)
         {
             GPIO_SetPinValue(led->port,led->pin,LOW);
         }
@@ -43,7 +44,7 @@ STATUS LED_init(LED_t* led)
         {
           GPIO_SetPinValue(led->port,led->pin,LOW);  
         }
-        else if(led->ledState == LED_ON)
+        else if(led->ledState == LED_OFF)
         {
           GPIO_SetPinValue(led->port,led->pin,HIGH);
         }
@@ -75,11 +76,11 @@ switch (led->activeType)
     {
     case ACTIVE_HIGH:
         
-        if (led->ledState == LED_ON)
+        if (state == LED_ON)
         {
             GPIO_SetPinValue(led->port,led->pin,HIGH);
         }
-        else if(led->ledState == LED_ON)
+        else if(state == LED_OFF)
         {
             GPIO_SetPinValue(led->port,led->pin,LOW);
         }
@@ -91,11 +92,11 @@ switch (led->activeType)
 
         break;
     case ACTIVE_LOW:
-        if (led->ledState == LED_ON)
+        if (state == LED_ON)
         {
           GPIO_SetPinValue(led->port,led->pin,LOW);  
         }
-        else if(led->ledState == LED_ON)
+        else if(state == LED_OFF)
         {
           GPIO_SetPinValue(led->port,led->pin,HIGH);
         }
@@ -130,11 +131,11 @@ STATUS  LED_getState(LED_t* led,LED_STATE_t* state)
         
         if (pinState == HIGH)
         {
-            state = LED_ON;
+            *state = LED_ON;
         }
         else if(pinState == LOW)
         {
-            state = LED_OFF;
+            *state = LED_OFF;
         }
         else
         {
@@ -144,11 +145,11 @@ STATUS  LED_getState(LED_t* led,LED_STATE_t* state)
     case ACTIVE_LOW:
         if (pinState == HIGH)
         {
-            state = LED_OFF;
+            *state = LED_OFF;
         }
         else if(pinState == LOW)
         {
-            state = LED_ON;
+            *state = LED_ON;
         }
         else
         {

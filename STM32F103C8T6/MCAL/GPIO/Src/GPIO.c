@@ -32,16 +32,16 @@ STATUS  GPIO_PinInit(const PIN_CFG_t* pinCfg)
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->mode<<(pinCfg->pin * MODE_PIN_ACCESS));
             if (pinCfg->mode != INPUT)
             {
-            /*Clearing the TWO Bits corresponding to MODE BITS*/
+            /*Clearing the TWO Bits corresponding to OUTPUT MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] &= (~(MODE_MASK <<(((pinCfg->pin % 8) * MODE_PIN_ACCESS)+2)));
-            /*setting the TWO Bits corresponding to MODE BITS*/
+            /*setting the TWO Bits corresponding to OUTPUT MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->outputType<<((pinCfg->pin * MODE_PIN_ACCESS)+2)); 
             }
             else if(pinCfg->mode == INPUT)
             {
-            /*Clearing the TWO Bits corresponding to MODE BITS*/
+            /*Clearing the TWO Bits corresponding to INPUT MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] &= (~(MODE_MASK <<(((pinCfg->pin % 8) * MODE_PIN_ACCESS)+2)));
-            /*setting the TWO Bits corresponding to MODE BITS*/
+            /*setting the TWO Bits corresponding to INPUT MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->inputType<<((pinCfg->pin * MODE_PIN_ACCESS)+2)); 
             /*Activate Pull up or down*/
             GPIOPort[pinCfg->port]->ODR &= (~(1<<pinCfg->pin));

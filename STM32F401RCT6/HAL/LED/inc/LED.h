@@ -6,30 +6,17 @@
 #include "../../../Library/ErrorStates.h"
 
  
-
-/*********************
- *@LED_t enum
- * 
-*/
-typedef struct
-{    
-   LED_PORT_t       port;
-   LED_PIN_t        pin;
-   ACTIVE_TYPE_t    activeType;
-   LED_STATE_t      ledState; 
-}LED_t;
-
 /*********************
  * @LED_PORT_t enum
  * 
 */
 typedef enum{
-    PORTA,
-    PORTB,
-    PORTC,
-    PORTD,
-    PORTE,
-    PORTCOUNT
+    LED_PORTA,
+	LED_PORTB,
+	LED_PORTC,
+	LED_PORTD,
+	LED_PORTE,
+	LED_PORTCOUNT
 }LED_PORT_t;
 
 /*********************
@@ -37,8 +24,8 @@ typedef enum{
  * 
 */
 typedef enum{
-    PIN0,PIN1,PIN2,PIN3,PIN4,PIN5,PIN6,PIN7,
-    PIN8,PIN9,PIN10,PIN11,PIN12,PIN13,PIN14,PIN15,PINCOUNT
+	LED_PIN0,LED_PIN1,LED_PIN2,LED_PIN3,LED_PIN4,LED_PIN5,LED_PIN6,LED_PIN7,
+	LED_PIN8,LED_PIN9,LED_PIN10,LED_PIN11,LED_PIN12,LED_PIN13,LED_PIN14,LED_PIN15,LED_PINCOUNT
 }LED_PIN_t;
 
 /*********************
@@ -58,6 +45,19 @@ typedef enum{
     ACTIVE_LOW,
     ACTIVE_HIGH
 }ACTIVE_TYPE_t;
+/*********************
+ *@LED_t enum
+ *
+*/
+typedef struct
+{
+   LED_PORT_t       port;
+   LED_PIN_t        pin;
+   ACTIVE_TYPE_t    activeType;
+   LED_STATE_t      ledState;
+}LED_t;
+
+
 
 
 

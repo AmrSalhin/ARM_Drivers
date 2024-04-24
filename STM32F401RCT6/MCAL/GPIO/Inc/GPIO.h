@@ -55,7 +55,7 @@ typedef enum{
 
 typedef enum{
     PUSH_PULL,
-    OPEN_DRAIN
+    OPEN_DRAIN,
 }OUTPUT_TYPE_t;
 
 typedef enum{
