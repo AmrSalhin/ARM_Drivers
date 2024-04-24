@@ -68,6 +68,15 @@ typedef enum{
 }OUTPUT_TYPE_t;
 
 /*********************
+ * @PULLTYPE_t enum
+ * 
+*/
+typedef enum{
+    PULL_DOWN,
+    PULL_UP,
+}PULLTYPE_t;
+
+/*********************
  * @PIN_CFG_t struct
  * 
 */
@@ -78,6 +87,7 @@ typedef struct
     MODE_t           mode;
     OUTPUT_TYPE_t    outputType;
     INPUT_TYPE_t     inputType;
+    PULLTYPE_t       pullType;
 }PIN_CFG_t;
 
 
