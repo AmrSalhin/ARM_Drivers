@@ -1,8 +1,6 @@
 #ifndef LED_H_
 #define LER_H_
 
-#include "../../../MCAL/RCC/Inc/RCC.h"
-#include "../../../MCAL/GPIO/Inc/GPIO.h"
 #include "../../../Library/ErrorStates.h"
 
  

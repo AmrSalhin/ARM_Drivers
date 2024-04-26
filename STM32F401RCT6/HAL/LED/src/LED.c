@@ -1,3 +1,4 @@
+#include "../../../MCAL/GPIO/Inc/GPIO.h"
 #include "../inc/LED.h"
 #include "../inc/LED_private.h"
 

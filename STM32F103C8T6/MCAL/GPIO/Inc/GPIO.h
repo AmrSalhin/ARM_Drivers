@@ -95,6 +95,7 @@ typedef struct
 
 STATUS  GPIO_PinInit(const PIN_CFG_t* gpioCfg);
 STATUS  GPIO_SetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t value);
+STATUS  GPIO_SetNibbleValue(PORT_t port,uint8_t nibble,uint8_t value);
 STATUS  GPIO_TogglePinValue(PORT_t port,PIN_t pin);
 STATUS  GPIO_GetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t* value);
 

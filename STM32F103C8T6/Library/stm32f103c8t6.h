@@ -10,6 +10,10 @@
 #define SRAM_BASE_ADDRESS           0x20000000UL
 
 
+/*************************       Cortex-M3 internal peripherals       **************************/
+
+#define SysTick_BASE_ADDRESS        0xE000E010UL
+
 /*************************      AHB1 peripheral Base Addresses      **************************/
 
 
@@ -344,6 +348,34 @@ typedef union
 
  }GPIO_REG_t;
 
+/*************************      SYSTICK Registers Bits Definition UNION      **************************/
+
+typedef union
+{
+  uint32_t reg;
+  struct SYST_CSR_REG_BITS
+  {
+    uint32_t  ENABLE      :1;
+    uint32_t  TICKINT     :1;
+    uint32_t  CLKSOURCE   :1;
+    uint32_t  reserved_1  :13; 
+    uint32_t  COUNTFLAG   :1;
+  }bit;
+  
+}SYST_CSR_t;
+
+
+
+/*************************       SYSTICK Registers Definition Strucre        **************************/
+
+typedef struct 
+{
+  volatile  SYST_CSR_t SYST_CSR;
+  volatile  uint32_t   SYST_RVR;
+  volatile  uint32_t   SYST_CVR;
+  volatile  uint32_t   SYST_CALIB;
+
+}SYSTICK_REG_t;
 
 
 #endif

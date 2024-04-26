@@ -29,20 +29,20 @@ STATUS  GPIO_PinInit(const PIN_CFG_t* pinCfg)
             /*Clearing the TWO Bits corresponding to MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] &= (~(MODE_MASK <<((pinCfg->pin % 8) * MODE_PIN_ACCESS)));
             /*setting the TWO Bits corresponding to MODE BITS*/
-            GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->mode<<(pinCfg->pin * MODE_PIN_ACCESS));
+            GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->mode<<((pinCfg->pin % 8) * MODE_PIN_ACCESS));
             if (pinCfg->mode != INPUT)
             {
             /*Clearing the TWO Bits corresponding to OUTPUT MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] &= (~(MODE_MASK <<(((pinCfg->pin % 8) * MODE_PIN_ACCESS)+2)));
             /*setting the TWO Bits corresponding to OUTPUT MODE BITS*/
-            GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->outputType<<((pinCfg->pin * MODE_PIN_ACCESS)+2)); 
+            GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->outputType<<(((pinCfg->pin % 8) * MODE_PIN_ACCESS)+2));
             }
             else if(pinCfg->mode == INPUT)
             {
             /*Clearing the TWO Bits corresponding to INPUT MODE BITS*/
             GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] &= (~(MODE_MASK <<(((pinCfg->pin % 8) * MODE_PIN_ACCESS)+2)));
             /*setting the TWO Bits corresponding to INPUT MODE BITS*/
-            GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->inputType<<((pinCfg->pin * MODE_PIN_ACCESS)+2)); 
+            GPIOPort[pinCfg->port]->CR[pinCfg->pin/8] |= (pinCfg->inputType<<(((pinCfg->pin % 8) * MODE_PIN_ACCESS)+2));
             /*Activate Pull up or down*/
             GPIOPort[pinCfg->port]->ODR &= (~(1<<pinCfg->pin));
             GPIOPort[pinCfg->port]->ODR |= (pinCfg->pullType<<pinCfg->pin);
@@ -98,6 +98,39 @@ STATUS  GPIO_SetPinValue(PORT_t port,PIN_t pin,PIN_STATE_t value)
    {
     errorState = NOK;
    }
+
+return errorState;
+}
+
+/*********************************************************************************
+*@fn GPIO_SetPortValue
+*@brief the function set pin value according to input parameters
+*@param[in] port port number ,get options @PORT_t enum
+*@param[in] nibble nibble number 
+*@param[in] value output value ,get options @PIN_STATE_t enum
+*@retval STATUS
+*/
+STATUS  GPIO_SetNibbleValue(PORT_t port,uint8_t nibble,uint8_t value)
+{
+   STATUS errorState = OK;
+    if((port < PORTCOUNT))
+   {
+        if(nibble < 4)
+        {
+            value &= 0x0F;
+            GPIOPort[port]->ODR &= (~(15UL<<4*nibble));
+            GPIOPort[port]->ODR |= (value<<4*nibble);
+        }
+        else
+        {
+            errorState = NOK;
+        }
+   }
+   else
+   {
+    errorState = NOK;
+   }
+   
 
 return errorState;
 }
