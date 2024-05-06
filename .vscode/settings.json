@@ -2,6 +2,7 @@
     "files.associations": {
         "stm32f103c8t6.h": "c",
         "rcc.h": "c",
-        "clcd.h": "c"
+        "clcd.h": "c",
+        "errorstates.h": "c"
     }
 }

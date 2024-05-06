@@ -1,7 +1,6 @@
 #ifndef GPIO_H_
 #define GPIO_H_
 
-#include "..\..\..\Library\stm32f401rct6.h"
 #include "..\..\..\Library\ErrorStates.h"
 #include "..\..\..\Library\BIT_MATH.h"
 

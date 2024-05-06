@@ -1,5 +1,6 @@
 #include "..\Inc\RCC.h"
 #include "..\Inc\RCC_private.h"
+#include "..\..\..\Library\stm32f401rct6.h"
 /*************************      RCC peripheral Definition       **************************/
 
 #define RCC         ((RCC_t *) RCC_BASE_ADDRESS)

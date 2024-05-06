@@ -1,5 +1,6 @@
 #include "..\Inc\GPIO.h"
 #include "..\Inc\GPIO_private.h"
+#include "..\..\..\Library\stm32f401rct6.h"
 
 /*************************           GPIO peripheral Definition           **************************/
 

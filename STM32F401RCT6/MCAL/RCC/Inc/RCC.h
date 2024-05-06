@@ -5,7 +5,6 @@
 /**************   Includes    *****************/
 /**********************************************/
 #include <stdint.h>
-#include "..\..\..\Library\stm32f401rct6.h"
 #include "..\..\..\Library\ErrorStates.h"
 #include "..\..\..\Library\BIT_MATH.h"
 
