@@ -15,6 +15,7 @@
 /*************************       Cortex-M4 internal peripherals       **************************/
 
 #define SysTick_BASE_ADDRESS        0xE000E010UL
+#define NVIC_BASE_ADDRESS           0xE000E100UL
 
 /*************************      AHB1 peripheral Base Addresses      **************************/
 
@@ -573,5 +574,25 @@ typedef struct
   volatile  uint32_t   SYST_CALIB;
 
 }SYSTICK_REG_t;
+
+/*************************           NVIC Registers Definition           **************************/
+
+typedef struct
+{
+  uint32_t ISER[8];   /*Interrupt Set Enable Register*/
+  uint32_t reserved_1[24];
+  uint32_t ICER[8];   /*Interrupt Clear Enable Register*/
+  uint32_t reserved_5[24];
+  uint32_t ISPR[8];   /*Interrupt Set Pending Register*/
+  uint32_t reserved_2[24];
+  uint32_t ICPR[8];   /*Interrupt Clear Pending Register*/
+  uint32_t reserved_6[24];
+  uint32_t IABR[8];   /*Interrupt Active Bit Register*/
+  uint32_t reserved_3[56];
+  uint8_t  IPR[240];  /*Interrupt Priority Register*/  
+  uint32_t reserved_4[643];
+  uint32_t STIR;
+}NVIC_REG_t;
+
 
 #endif

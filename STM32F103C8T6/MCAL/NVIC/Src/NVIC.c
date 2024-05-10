@@ -1,12 +1,10 @@
 #include "..\inc\NVIC.h"
+#include "../../../Library/stm32f103c8t6.h"
 
-/*************************           NVIC Registers Definition           **************************/
-#define NVIC_ISER                   ((uint32_t*)0xE000E100UL)  /*Interrupt Set Enable Register*/
-#define NVIC_ICER                   ((uint32_t*)0xE000E180UL)  /*Interrupt Clear Enable Register*/
-#define NVIC_ISPR                   ((uint32_t*)0xE000E200UL)  /*Interrupt Set Pending Register*/
-#define NVIC_ICPR                   ((uint32_t*)0xE000E280UL)  /*Interrupt Clear Pending Register*/
-#define NVIC_IABR                   ((uint32_t*)0xE000E300UL)  /*Interrupt Active Bit Register*/
-#define NVIC_IPR                    ((uint32_t*)0xE000E400UL)  /*Interrupt Priority Register*/
+#define NVIC    ((NVIC_REG_t*)NVIC_BASE_ADDRESS)
+
+#define AIRCR   *((uint32_t*)0xE000ED0C)
+
 
 
 /****************************************************************
@@ -17,7 +15,7 @@
 */
 void Enable_IRQ(IRQ_t irq)
 {
-    NVIC_ISER[irq / 32] = 1 << (irq % 32); 
+    NVIC->ISER[irq / 32] = 1 << (irq % 32); 
 }
 
 /****************************************************************
@@ -28,7 +26,7 @@ void Enable_IRQ(IRQ_t irq)
 */
 void Disable_IRQ(IRQ_t irq)
 {
-    NVIC_ICER[irq / 32] = 1 << (irq % 32);
+    NVIC->ICER[irq / 32] = 1 << (irq % 32);
 }
 
 /****************************************************************
@@ -39,7 +37,7 @@ void Disable_IRQ(IRQ_t irq)
 */
 void SetPendingFlag(IRQ_t irq)
 {
-    NVIC_ISPR[irq / 32] = 1 << (irq % 32);
+    NVIC->ISPR[irq / 32] = 1 << (irq % 32);
 }
 
 /****************************************************************
@@ -50,7 +48,7 @@ void SetPendingFlag(IRQ_t irq)
 */
 void CLearPendingFlag(IRQ_t irq)
 {
-    NVIC_ICPR[irq / 32] = 1 << (irq % 32);
+    NVIC->ICPR[irq / 32] = 1 << (irq % 32);
 }
 
 /****************************************************************
@@ -61,7 +59,7 @@ void CLearPendingFlag(IRQ_t irq)
 */
 uint8_t GetActiveFlag(IRQ_t irq)
 {
-    return((NVIC_IABR[irq / 32] & (1<<(irq % 32))>>(irq % 32)));
+    return((NVIC->IABR[irq / 32] & (1<<(irq % 32))>>(irq % 32)));
 }
 
 /****************************************************************
@@ -73,9 +71,19 @@ uint8_t GetActiveFlag(IRQ_t irq)
 */
 void SetPriority(IRQ_t irq, uint8_t priority)
 {   
-    /*Clear the priority bits 0b PPPP XXXX  p -> priority  x -> don't care*/
-    NVIC_IPR[irq / 4] &= (~(0xff<<((8*(irq % 4))+4)));
-
     /*Set priority*/
-    NVIC_IPR[irq / 4] |= (priority << ((8*(irq % 4))+4));
+    NVIC->IPR[irq] = (priority <<4);
+}
+
+/****************************************************************
+ * @fn SCB_setPriorityGroup
+ * @brief Set interrupt Groups Number
+ * @param[in] GROUP_NUM_t number of Groups 
+ * @retval none 
+*/
+void SCB_setPriorityGroup(GROUP_NUM_t number)
+{
+    /*Must write 5FA from 16th to write any thing in this rgister*/
+    uint32_t value = 0x05FA0000 | (number<<8);
+    AIRCR =   value;
 }
