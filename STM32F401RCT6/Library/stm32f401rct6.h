@@ -594,5 +594,29 @@ typedef struct
   uint32_t STIR;
 }NVIC_REG_t;
 
+/*************************       EXTI Registers Definition Strucre        **************************/
+
+typedef struct 
+{
+  volatile  uint32_t  IMR;
+  volatile  uint32_t  EMR;
+  volatile  uint32_t  RTSR;
+  volatile  uint32_t  FTSR;
+  volatile  uint32_t  SWIER;
+  volatile  uint32_t  PR;
+
+}EXTI_REG_t;
+
+/*************************       SYSCFG Registers Definition Strucre        **************************/
+
+typedef struct 
+{
+  volatile  uint32_t  MEMRMP;
+  volatile  uint32_t  PMC;
+  volatile  uint32_t  EXTICR[4];
+  volatile  uint32_t  reserved[3];
+  volatile  uint32_t  CMPCR;
+
+}SYSCFG_REG_t;
 
 #endif

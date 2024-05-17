@@ -27,8 +27,10 @@ typedef enum{
     NVIC_DMA1_Stream5,
     NVIC_DMA1_Stream6,
     NVIC_ADC,
+    NVIC_EXTI9_5 = 23,
     NVIC_USART1 = 37,
     NVIC_USART2,
+    NVIC_EXTI15_10 = 40,
 }IRQ_t;
 
 /*********************
