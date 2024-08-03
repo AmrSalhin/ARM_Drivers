@@ -1,0 +1,28 @@
+#ifndef OSMCAL_CFG_H_
+#define OSMCAL_CFG_H_
+
+#define DUMMY_PSR					0x1000000
+#define DUMMY_LR					0xFFFFFFFD
+
+#define SIZE_TASK_STACK				1024U
+#define SCHEDULER_TASK_STACK		1024U
+
+#define SRAM_START					0x20000000U
+#define SRAM_SIZE					(64*1024)
+#define SRAM_END					((SRAM_START) + (SRAM_SIZE))
+
+#define T1_STACK_START				(SRAM_END)
+#define T2_STACK_START				((SRAM_END) - (1 * (SIZE_TASK_STACK)))
+#define T3_STACK_START				((SRAM_END) - (2 * (SIZE_TASK_STACK)))
+#define T4_STACK_START				((SRAM_END) - (3 * (SIZE_TASK_STACK)))
+#define SCHED_STACK_START			((SRAM_END) - (4 * (SIZE_TASK_STACK)))
+
+#define MAX_NUM_OF_TASKS	4
+
+#define FREQUENCY_IN_MHZ    (16UL)
+#define FREQUENCY_IN_KHZ    (FREQUENCY_IN_MHZ * (1000UL))
+
+#define MAXMUM_TICKS_NUM    (0x00FFFFFF)
+
+
+#endif

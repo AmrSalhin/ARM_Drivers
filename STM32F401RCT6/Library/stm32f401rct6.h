@@ -16,6 +16,7 @@
 
 #define SysTick_BASE_ADDRESS        0xE000E010UL
 #define NVIC_BASE_ADDRESS           0xE000E100UL
+#define SCB_BASE_ADDRESS			0xE000ED00UL
 
 /*************************      AHB1 peripheral Base Addresses      **************************/
 
@@ -490,7 +491,7 @@ typedef union
     }bit;
  }RCC_DCKCFGR_t;
  
- /*************************      RCC Registers Definition Strucre      **************************/
+ /*************************      RCC Registers Definition Structure      **************************/
 
  typedef struct 
  {
@@ -530,7 +531,7 @@ typedef union
 
 
 
-/*************************       GPIO Registers Definition Strucre        **************************/
+/*************************       GPIO Registers Definition Structure        **************************/
 
 typedef struct 
 {
@@ -564,7 +565,7 @@ typedef union
 
 
 
-/*************************       SYSTICK Registers Definition Strucre        **************************/
+/*************************       SYSTICK Registers Definition Structure        **************************/
 
 typedef struct 
 {
@@ -594,7 +595,7 @@ typedef struct
   uint32_t STIR;
 }NVIC_REG_t;
 
-/*************************       EXTI Registers Definition Strucre        **************************/
+/*************************       EXTI Registers Definition Structure        **************************/
 
 typedef struct 
 {
@@ -607,7 +608,7 @@ typedef struct
 
 }EXTI_REG_t;
 
-/*************************       SYSCFG Registers Definition Strucre        **************************/
+/*************************       SYSCFG Registers Definition Structure        **************************/
 
 typedef struct 
 {
@@ -618,5 +619,26 @@ typedef struct
   volatile  uint32_t  CMPCR;
 
 }SYSCFG_REG_t;
+
+/*************************       SCB Registers Definition Structure        **************************/
+
+typedef struct
+{
+  volatile  uint32_t  CPUID;
+  volatile  uint32_t  ICSR;
+  volatile  uint32_t  VTOR;
+  volatile  uint32_t  AIRCR;
+  volatile  uint32_t  SCR;
+  volatile  uint32_t  CCR;
+  volatile  uint8_t   SHPR[12UL];
+  volatile  uint32_t  SHCRS;
+  volatile  uint32_t  CFSR;
+  volatile  uint32_t  MMSR;
+  volatile  uint32_t  HFSR;
+  volatile  uint32_t  MMAR;
+  volatile  uint32_t  BFAR;
+  volatile  uint32_t  AFSR;
+
+}SCB_REG_t;
 
 #endif
