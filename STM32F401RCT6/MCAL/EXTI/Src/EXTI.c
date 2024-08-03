@@ -1,4 +1,5 @@
 #include "..\inc\EXTI.h"
+#include "..\inc\EXTI_private.h"
 #include "../../../Library/stm32f401rct6.h"
 
 #define EXTI    ((EXTI_REG_t*)EXTI_BASE_ADDRESS)
@@ -144,7 +145,6 @@ STATUS EXTI_CLear_Flag(EXTI_LINE_NUM lineNum)
 
 uint8_t EXTI_Read_Flag(EXTI_LINE_NUM lineNum)
 {
-
     return (((EXTI->PR>>lineNum)&1));
 }
 
@@ -159,6 +159,7 @@ STATUS EXTI0_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI1_SetCallBack(void (*CopyFun)(void))
@@ -172,6 +173,7 @@ STATUS EXTI1_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI2_SetCallBack(void (*CopyFun)(void))
@@ -185,6 +187,7 @@ STATUS EXTI2_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI3_SetCallBack(void (*CopyFun)(void))
@@ -198,6 +201,7 @@ STATUS EXTI3_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI4_SetCallBack(void (*CopyFun)(void))
@@ -211,6 +215,7 @@ STATUS EXTI4_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI5_SetCallBack(void (*CopyFun)(void))
@@ -224,6 +229,7 @@ STATUS EXTI5_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI6_SetCallBack(void (*CopyFun)(void))
@@ -237,6 +243,7 @@ STATUS EXTI6_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI7_SetCallBack(void (*CopyFun)(void))
@@ -250,6 +257,7 @@ STATUS EXTI7_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI8_SetCallBack(void (*CopyFun)(void))
@@ -263,6 +271,7 @@ STATUS EXTI8_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI9_SetCallBack(void (*CopyFun)(void))
@@ -276,6 +285,7 @@ STATUS EXTI9_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI10_SetCallBack(void (*CopyFun)(void))
@@ -289,6 +299,7 @@ STATUS EXTI10_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI11_SetCallBack(void (*CopyFun)(void))
@@ -302,6 +313,7 @@ STATUS EXTI11_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI12_SetCallBack(void (*CopyFun)(void))
@@ -315,6 +327,7 @@ STATUS EXTI12_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI13_SetCallBack(void (*CopyFun)(void))
@@ -328,6 +341,7 @@ STATUS EXTI13_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI14_SetCallBack(void (*CopyFun)(void))
@@ -341,6 +355,7 @@ STATUS EXTI14_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI15_SetCallBack(void (*CopyFun)(void))
@@ -354,6 +369,7 @@ STATUS EXTI15_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI16_SetCallBack(void (*CopyFun)(void))
@@ -367,6 +383,7 @@ STATUS EXTI16_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI17_SetCallBack(void (*CopyFun)(void))
@@ -380,6 +397,7 @@ STATUS EXTI17_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI18_SetCallBack(void (*CopyFun)(void))
@@ -393,6 +411,7 @@ STATUS EXTI18_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI21_SetCallBack(void (*CopyFun)(void))
@@ -406,6 +425,7 @@ STATUS EXTI21_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 STATUS EXTI22_SetCallBack(void (*CopyFun)(void))
@@ -419,6 +439,7 @@ STATUS EXTI22_SetCallBack(void (*CopyFun)(void))
     {
         errorStatus = NULLPTR;
     }
+    return errorStatus;
 }
 
 void EXTI0_IRQHandler(){
@@ -452,35 +473,35 @@ void EXTI4_IRQHandler(){
     }
 }
 void EXTI9_5_IRQHandler(){
-    if(EXTI_Read_Flag(LINE_5))
+    if(EXTI5_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_5);
     if(pvFunc[LINE_5]  != NULL){
         pvFunc[LINE_5] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_6))
+    if(EXTI6_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_6);
     if(pvFunc[LINE_6]  != NULL){
         pvFunc[LINE_6] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_7))
+    if(EXTI7_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_7);
     if(pvFunc[LINE_7]  != NULL){
         pvFunc[LINE_7] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_8))
+    if(EXTI8_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_8);
     if(pvFunc[LINE_8]  != NULL){
         pvFunc[LINE_8] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_9))
+    if(EXTI9_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_9);
     if(pvFunc[LINE_9]  != NULL){
@@ -490,42 +511,42 @@ void EXTI9_5_IRQHandler(){
 }
 void EXTI15_10_IRQHandler()
 {
-    if(EXTI_Read_Flag(LINE_10))
+    if(EXTI10_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_10);
     if(pvFunc[LINE_10]  != NULL){
         pvFunc[LINE_10] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_11))
+    if(EXTI11_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_11);
     if(pvFunc[LINE_11]  != NULL){
         pvFunc[LINE_11] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_12))
+    if(EXTI12_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_12);
     if(pvFunc[LINE_12]  != NULL){
         pvFunc[LINE_12] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_13))
+    if(EXTI13_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_13);
     if(pvFunc[LINE_13]  != NULL){
         pvFunc[LINE_13] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_14))
+    if(EXTI14_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_14);
     if(pvFunc[LINE_14]  != NULL){
         pvFunc[LINE_14] ();
     }
     }
-    if(EXTI_Read_Flag(LINE_15))
+    if(EXTI15_FLAG == RAISED)
     {
     EXTI_CLear_Flag(LINE_15);
     if(pvFunc[LINE_15]  != NULL){

@@ -19,6 +19,10 @@ typedef enum
     SW_PIN8,SW_PIN9,SW_PIN10,SW_PIN11,SW_PIN12,SW_PIN13,SW_PIN14,SW_PIN15
 }SWITCh_PIN_t;
 
+/**
+ * @typedef SWITCh_INPUT_t
+ * @brief   choose the configuration of MCU pin
+*/
 typedef enum
 {   
     SW_Floating ,
@@ -26,6 +30,10 @@ typedef enum
 	SW_PULL_DOWN
 }SWITCh_INPUT_t;
 
+/**
+ * @typedef SWITCH_PULL_t
+ * @brief   determine if switch default state is pulled up or down
+*/
 typedef enum
 {
 	SW_PULLED_UP,

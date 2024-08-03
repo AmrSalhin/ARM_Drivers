@@ -1,5 +1,5 @@
-#ifndef SYSTICK_PRIVATE_H_
-#define SYSTICK_PRIVATE_H_
+#ifndef SYSTICK_CFG_H_
+#define SYSTICK_CFG_H_
 
 
 #define     FREQUENCY_IN_MHZ    (2UL)
