@@ -12,10 +12,26 @@
 
 /*************************            Global Variables				***********************/
 /*array of pointers to FUNC*/
-void(*pv_Task[MAX_NUM_OF_TASKS])() = {NULL};
-uint32_t psp[MAX_NUM_OF_TASKS] = {T1_STACK_START,T2_STACK_START,T3_STACK_START,T4_STACK_START};
+//void(*pv_Task[MAX_NUM_OF_TASKS])() = {NULL};
+//uint32_t psp[MAX_NUM_OF_TASKS] = {T1_STACK_START,T2_STACK_START,T3_STACK_START,T4_STACK_START};
+
+typedef enum{
+	READY,
+	BLOCKED
+}TaskState;
+
+typedef struct{
+	uint32_t PSP;
+	uint32_t BlockTime;
+	TaskState CurrentState;
+	void(*TaskHandler)(void);
+}TCB_t;
+
+TCB_t	UserTasks[MAX_NUM_OF_TASKS];
+
 
 uint8_t currentTask = 0;
+uint8_t Tasks_counter = 0;
 
 /*********************************************************************************
 *@fn SYSTICK_Init
@@ -49,10 +65,10 @@ STATUS  SYSTICK_Init(uint32_t TIME_MS)
 
 void OS_CreatTask(void(*Copy_pvTask)())
 {
-	static uint8_t Tasks_counter = 0;
+
 	if(Tasks_counter < MAX_NUM_OF_TASKS)
 	{
-		pv_Task[Tasks_counter] = Copy_pvTask;
+		UserTasks[Tasks_counter].TaskHandler = Copy_pvTask;
 		Tasks_counter++;
 	}
 	else
@@ -71,13 +87,18 @@ void Stack_voidTasksStackInit(void)
 {
 	uint8_t i, j;
 	uint32_t* Local_pvSP;
+	UserTasks[0].PSP = T1_STACK_START;
+	UserTasks[1].PSP = T2_STACK_START;
+	UserTasks[2].PSP = T3_STACK_START;
+	UserTasks[3].PSP = T4_STACK_START;
 	for(i = 0; i<MAX_NUM_OF_TASKS; i++)
 	{
-		Local_pvSP = (uint32_t*) psp[i];
+		UserTasks[i].CurrentState = READY;
+		Local_pvSP = (uint32_t*) UserTasks[i].PSP;
 		Local_pvSP--;
 		*Local_pvSP = DUMMY_PSR;
 		Local_pvSP--;
-		*Local_pvSP = (uint32_t) pv_Task[i];
+		*Local_pvSP = (uint32_t) UserTasks[i].TaskHandler;
 		Local_pvSP--;
 		*Local_pvSP = DUMMY_LR;
 		for(j = 0; j<13; j++)
@@ -85,7 +106,7 @@ void Stack_voidTasksStackInit(void)
 			Local_pvSP--;
 			*Local_pvSP = 0;
 		}
-		psp[i] = (uint32_t) Local_pvSP;
+		UserTasks[i].PSP = (uint32_t) Local_pvSP;
 	}
 
 }
@@ -97,7 +118,7 @@ void Faults_Enable(void)
 
 uint32_t getCurrentPSPValue(void)
 {
-	return psp[currentTask];
+	return UserTasks[currentTask].PSP;
 }
 
 __attribute__((naked)) void changeToPSP(void)
@@ -121,14 +142,17 @@ __attribute__((naked)) void changeToPSP(void)
 
 void SavePSPValue(uint32_t copy_u32PSPValue)
 {
-	psp[currentTask] = copy_u32PSPValue;
+	UserTasks[currentTask].PSP = copy_u32PSPValue;
 }
 
 void UpdateNextTask(void)
 {
 	currentTask++;
+	if(Tasks_counter != 0)
+	{
+		currentTask %= Tasks_counter;
+	}
 
-	currentTask %= MAX_NUM_OF_TASKS;
 }
 
 __attribute__((naked)) void  SysTick_Handler()
